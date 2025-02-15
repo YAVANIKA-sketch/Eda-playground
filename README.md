@@ -1,4 +1,3 @@
-# Eda-playground
 # d flip flop verilog code
 module dff(q,qbar,d,set,rst,clk);
   input d,set,rst,clk;
