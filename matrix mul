@@ -1,0 +1,58 @@
+module matrix_multiplication;
+
+    // Matrix dimensions
+    parameter N = 3; // Size of the matrix (NxN)
+
+    // Input matrices
+    reg [7:0] A [0:N-1][0:N-1]; // Matrix A (3x3)
+    reg [7:0] B [0:N-1][0:N-1]; // Matrix B (3x3)
+
+    // Output matrix
+    reg [15:0] C [0:N-1][0:N-1]; // Resultant Matrix C (3x3)
+
+    // Temporary variables
+    integer i, j, k;
+
+    initial begin
+        // Initialize Matrix A
+      A[0][0] = 2; A[0][1] = 3; A[0][2] = 1; 
+      A[1][0] = 1; A[1][1] = 2; A[1][2] = 3; 
+      A[2][0] = 7; A[2][1] = 1; A[2][2] = 2;         
+   
+
+        // Initialize Matrix B
+      B[0][0] = 87;  B[0][1] = 2; B[0][2] = 4;
+      B[1][0] = 46;  B[1][1] = 4; B[1][2] = 9; 
+      B[2][0] = 46;  B[2][1] = 7; B[2][2] = 4; 
+    
+
+        // Initialize Matrix C to zero
+        for (i = 0; i < N; i = i + 1) begin
+            for (j = 0; j < N; j = j + 1) begin
+                C[i][j] = 0;
+            end
+        end
+
+        // Perform Matrix Multiplication
+        for (i = 0; i < N; i = i + 1) begin
+            for (j = 0; j < N; j = j + 1) begin
+                for (k = 0; k < N; k = k + 1) begin
+                    C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
+                end
+            end
+        end
+
+        // Display the result
+        $display("Resultant Matrix C:");
+        for (i = 0; i < N; i = i + 1) begin
+            for (j = 0; j < N; j = j + 1) begin
+                $write("%d ", C[i][j]);
+            end
+            $write("\n");
+        end
+
+        $stop;
+    end
+
+endmodule
+
