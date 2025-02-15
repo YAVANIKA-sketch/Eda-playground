@@ -1,0 +1,7 @@
+#srlatch verilog code
+module sr_latch(q,qbar,s,r);
+  output q,qbar;
+  input s,r;
+  assign q=~(r&qbar);
+  assign qbar=~(s&q);
+endmodule
