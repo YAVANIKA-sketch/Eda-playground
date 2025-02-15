@@ -1,0 +1,6 @@
+// Code your design here
+module inverter(b,a);
+  input a;
+  output b;
+  assign a=~b;
+endmodule
