@@ -1,0 +1,18 @@
+// Code your testbench here
+module buffer_testbench;
+  reg a,en;
+  wire b;
+  buffer b1(b,a,en);
+  initial
+    begin
+      $dumpfile("buffer.vcd");
+      $dumpvars(2,buffer_testbench);
+      en=1'b1;
+      a=1'b0;
+      #10 a=1'b1;
+      #10 a=1'b0;
+      #10 a=1'bx;
+      #10 a=1'bz;
+      #10 a=1'b0;
+    end
+      endmodule
