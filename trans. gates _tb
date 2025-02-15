@@ -1,0 +1,21 @@
+// Code your testbench here
+module trans_testbench;
+  wire b;
+  reg a, cntrl1,cntrl2;
+  trans t1(b,a,cntrl1,cntrl2);
+  initial
+    begin
+      $dumpfile("trans.vcd");
+      $dumpvars(2,trans_testbench);
+      a=1'b0; cntrl1=1'b0; cntrl2=1'b0;
+      #10 a=1'b0; cntrl1=1'b0; cntrl2=1'b1;
+      #10 a=1'b0; cntrl1=1'b1; cntrl2=1'b0;
+      #10 a=1'b0; cntrl1=1'b1; cntrl2=1'b1;
+      #10 a=1'b1; cntrl1=1'b0; cntrl2=1'b0;
+      #10 a=1'b1; cntrl1=1'b0; cntrl2=1'b1;
+      #10 a=1'b1; cntrl1=1'b1; cntrl2=1'b0;
+      #10 a=1'b1; cntrl1=1'b1; cntrl2=1'b1;
+      #10;
+      $finish;
+    end
+endmodule
