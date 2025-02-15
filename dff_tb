@@ -1,0 +1,45 @@
+# dff_tb
+`timescale 1ns / 1ps
+
+module dff_tb;
+  // Testbench signals
+  reg d, set, rst, clk;
+  wire q, qbar;
+
+  // Instantiate the D flip-flop
+  dff uut (
+    .q(q),
+    .qbar(qbar),
+    .d(d),
+    .set(set),
+    .rst(rst),
+    .clk(clk)
+  );
+
+  // Clock generation
+  always #5 clk = ~clk; // Clock with a period of 10 ns
+
+  initial begin
+    // Dump file setup
+    $dumpfile("dff.vcd");
+    $dumpvars(2, dff_tb);
+
+    // Initialize inputs
+    clk = 0; d = 0; set = 1; rst = 1;
+
+    // Apply test vectors
+    #10 rst = 0; // Apply reset
+    #10 rst = 1; // Release reset
+    #10 set = 0; // Apply set
+    #10 set = 1; // Release set
+
+    // Test normal D flip-flop operation
+    #10 d = 1;
+    #10 d = 0;
+    #10 d = 1;
+    #10 d = 0;
+
+    // Finish simulation
+    #20 $finish;
+  end
+endmodule
