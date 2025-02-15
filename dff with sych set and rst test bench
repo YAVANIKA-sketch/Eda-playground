@@ -1,0 +1,50 @@
+dff with sych set and rst_tb
+`timescale 1ns / 1ps
+
+module dff_tb;
+  // Testbench signals
+  reg d, set, rst, clk;
+  wire q, qbar;
+
+  // Instantiate the D Flip-Flop module
+  dff uut (
+    .q(q),
+    .qbar(qbar),
+    .d(d),
+    .set(set),
+    .rst(rst),
+    .clk(clk)
+  );
+
+  // Clock generation
+  initial begin
+    clk = 0;
+    forever #5 clk = ~clk; // Clock with period of 10ns
+  end
+
+  // Stimulus
+  initial begin
+    // Initialize inputs
+    d = 0; set = 1; rst = 1;
+
+    // VCD dump for waveform viewing
+    $dumpfile("dff.vcd");
+    $dumpvars(2, dff_tb);
+
+    // Apply reset
+    rst = 0; #10;
+    rst = 1; #10;
+
+    // Test set condition
+    set = 0; #10;
+    set = 1; #10;
+
+    // Test D input
+    d = 1; #10;
+    d = 0; #10;
+    d = 1; #10;
+
+    // Finish simulation
+    $finish;
+  end
+endmodule
