@@ -1,0 +1,27 @@
+module tb_full_adder();
+ wire s,c;
+  reg i1, i2 ,i3;
+  
+  //Positional port mapping: positions of port is important
+ // full_adder fa(s, c ,i1 ,i2 ,i3);
+  //named mapping: position of ports are not important
+  // named mapping : this is used in industry mode
+full_adder fa(.Sum(s), .Carry(c), .A(i1), .B(i2), .Cin(i3));
+  
+ // Input generator
+  initial begin
+     i1=1'b0; i2= 1'd0; i3= 1'h0; //b- binary, d-decimal, h-hexadecimal
+ #5    i1=1'b0; i2= 1'd0; i3= 1'h1;
+ #5    i1=1'b0; i2= 1'd1; i3= 1'h0;
+ #5    i1=1'b0; i2= 1'd1; i3= 1'h1;
+ #5    i1=1'b1; i2= 1'd0; i3= 1'h0;
+ #5    i1=1'b1; i2= 1'd0; i3= 1'h1;
+ #5    i1=1'b1; i2= 1'd1; i3= 1'h0;
+ #5    i1=1'b1; i2= 1'd1; i3= 1'h1;
+    end
+  initial begin
+$monitor($time , "| A = %b | B = %b | Cin = %b | Sum = %b || Carry = %b |", i1, i2, i3, s ,c);
+    $dumpfile("dump.vcd");
+    $dumpvars(2);
+  end         
+endmodule
