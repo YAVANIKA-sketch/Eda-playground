@@ -1,0 +1,9 @@
+module example(A,B,C,D,E,F,Y);
+  output Y;
+  input A,B,C,D,E,F;
+  wire t1,t2,t3,Y;
+  nand #5 G1(t1,A,B);
+  and #5 G2(t2,C,~B,D);
+  and #5 G3(t3,E,F);
+  nand #5 G4(Y,t1,t2,t3);
+endmodule
