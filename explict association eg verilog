@@ -1,0 +1,11 @@
+module example(A, B, C, D, E, F, Y);
+  input A, B, C, D, E, F; // Declare inputs
+  output Y;              // Declare output
+  wire t1, t2, t3;       // Intermediate wires
+
+  // Logic implementation
+  nand #1 G1(t1, A, B);        // NAND gate with 1-unit delay
+  and  #2 G2(t2, C, ~B, D);    // AND gate with 2-unit delay
+  nor  #1 G3(t3, E, F);        // NOR gate with 1-unit delay
+  nand #1 G4(Y, t1, t2, t3);   // Final NAND gate with 1-unit delay
+endmodule
