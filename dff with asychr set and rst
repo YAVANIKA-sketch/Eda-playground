@@ -1,4 +1,5 @@
-# d flip flop verilog code
+#EDA PLAYGROUND
+#dff with asychr set and rst
 module dff(q,qbar,d,set,rst,clk);
   input d,set,rst,clk;
   output reg q;
