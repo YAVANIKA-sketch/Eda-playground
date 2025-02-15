@@ -1,0 +1,13 @@
+// Code your design here
+module buffer(b,a,en);
+  input a,en;
+  output b;
+  reg b;
+  always@(a or en)
+    begin
+  if(en==1)
+    b=a;
+  else
+    b=1'bz;
+  end
+endmodule
