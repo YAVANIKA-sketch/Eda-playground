@@ -1,0 +1,25 @@
+module mux_4x1(y_out, i0, i1, i2, i3, s0, s1);
+  output reg y_out;
+  input i0, i1, i2, i3;
+  input s0,s1;
+  
+  always@(*)
+    begin
+      case({s0, s1})
+       2'b00: y_out=i0;
+       2'b01: y_out=i1;
+        2'b10: y_out=i2;
+        2'b11: y_out=i3;
+        
+      endcase
+      
+    /*  if(s==0 && s==1)
+        y_out = i0;
+      elseif(s==0 && s==1)
+      y_out = i1;
+      else(s==1 && s==0)
+        y_out = i2;
+      else(s==1 && s==1)
+        y_out = i3;  */
+    end
+endmodule
