@@ -1,0 +1,28 @@
+module countertestbench;
+  reg clk, rst;
+  wire [31:0] count;
+
+  // Instantiate the counter module
+  counter c1 (.clk(clk),.rst(rst),.count(count));
+
+  // Generate clock signal
+  always begin
+    #5 clk = ~clk; // Toggle clock every 5 time units
+  end
+
+  initial begin
+    // Initialize signals
+    clk = 0;
+    rst = 1; // Reset active
+
+    // Create dump file for waveform analysis
+    $dumpfile("countertestbench.vcd");
+    $dumpvars(0, countertestbench);
+
+    // Reset sequence
+    #10 rst = 0; // Deactivate reset after 10 time units
+
+    // Run simulation for a specified time
+    #100 $finish; // End simulation after 100 time units
+  end
+endmodule
