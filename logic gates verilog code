@@ -1,0 +1,11 @@
+// Code your design here
+module logic_module(f1, f2, f3, f4, f5, f6, a, b);
+  input a,b;
+  output f1, f2, f3, f4, f5, f6;
+  assign f1= a&b;
+  assign f2= a|b;
+  assign f3= ~a;
+  assign f4= ~(a&b);
+  assign f5= ~(a|b);
+  assign f6= a^b;
+endmodule
