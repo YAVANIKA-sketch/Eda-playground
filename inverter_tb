@@ -1,0 +1,15 @@
+// Code your testbench here
+module inverter_testbench;
+  wire b;
+reg a;
+  inverter i1(b,a);
+  initial
+    begin
+      $dumpfile("inverter.vcd");
+      $dumpvars(0, inverter_testbench);
+a=1'b0;
+      #5 a=1'b1;
+      #5 a=1'bx;
+      #5 a=1'bz;
+    end
+endmodule
