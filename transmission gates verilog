@@ -1,0 +1,16 @@
+// Code your design here
+module trans(b,a,cntrl1,cntrl2);
+  input a;
+  input cntrl1,cntrl2;
+  output b;
+  reg b;
+  always@(a or cntrl1 or cntrl2)
+    begin
+  if(cntrl1==cntrl2)
+    b=1'bx;
+      else if(cntrl1==0 && cntrl2==1)
+        b=a;
+      else
+        b=1'bz;
+    end
+endmodule
