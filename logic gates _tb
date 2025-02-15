@@ -1,0 +1,19 @@
+// Code your testbench here
+module logic_testbench;
+  reg a,b;
+  wire f1, f2, f3, f4, f5, f6;
+  logic_module l1(f1, f2, f3, f4, f5, f6, a, b);
+  initial
+    begin
+      $dumpfile("logic.vcd");
+      $dumpvars(0,logic_testbench);
+      a=1'b0;
+      b=1'b0;
+      #10 b=1'b1;
+      #10 a=1'b1;
+      b=1'b0;
+      #10 b=1'b1;
+      #10;
+     end
+endmodule
+      
