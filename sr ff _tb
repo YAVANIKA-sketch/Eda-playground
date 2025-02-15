@@ -1,0 +1,26 @@
+module srff_testbench;
+  reg s, r, clk, rst; // Declare as reg for procedural assignments
+  wire q, qb;         // Outputs remain wires
+
+  // Instantiate the SR flip-flop module
+  srff s1(q, qb, s, r, clk, rst);
+
+  // Generate clock signal
+  initial clk = 1'b0;
+  always #5 clk = ~clk;
+
+  // Test stimulus
+  initial begin
+    $dumpfile("srff.vcd"); // Create waveform dump file
+    $dumpvars(0, srff_testbench); // Dump all signals
+
+    // Initialize and apply test cases
+    rst = 1'b1; s = 1'b0; r = 1'b0; #10; // Reset the flip-flop
+    rst = 1'b0; s = 1'b0; r = 1'b1; #10; // Reset operation
+    s = 1'b1; r = 1'b0; #10;            // Set operation
+    s = 1'b0; r = 1'b0; #15;            // No change
+    s = 1'b1; r = 1'b1; #20;            // Invalid state
+
+    $finish; // End simulation
+  end
+endmodule
