@@ -1,0 +1,33 @@
+`timescale 1ns/1ns
+
+module parallel_adder_testbench;
+
+  reg [7:0] in1, in2;
+  reg cin;
+  wire [7:0] sum;
+  wire cout;
+
+  // Instantiate the parallel adder module
+  parallel_adder uut (
+    .sum(sum),
+    .cout(cout),
+    .in1(in1),
+    .in2(in2),
+    .cin(cin)
+  );
+
+  initial begin
+    $dumpfile("parallel_adder_testbench.vcd");
+    $dumpvars(0, parallel_adder_testbench);
+
+    // Test cases
+    #5 in1 = 8'h00; in2 = 8'h01; cin = 1; // Test case 1
+    #5 in1 = 8'h01; in2 = 8'h00; cin = 1; // Test case 2
+    #5 in1 = 8'h00; in2 = 8'h00; cin = 0; // Test case 3
+    #5 in1 = 8'hFF; in2 = 8'h01; cin = 0; // Test case 4
+    #5 in1 = 8'hAA; in2 = 8'h55; cin = 1; // Test case 5
+    #20;
+    $finish;
+  end
+
+endmodule
